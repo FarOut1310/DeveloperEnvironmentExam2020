@@ -22,11 +22,20 @@ namespace DeveloperEnvironmentExam2020
             {
                 var services = scope.ServiceProvider;
 
+                /// <summary>
+                /// Her kalder jeg funktionerne fra min SeedData klasse.
+                /// Hvis det lykkedes at køre funktionerne, vil min API nu
+                /// indeholde noget data når projektet startes.
+                /// </summary>
                 try
                 {
                     SeedData.AddCategories(services);
                     SeedData.AddProducts(services);
                 }
+                /// <summary>
+                /// Ellers, hvis der sker en fejl og funktionerne ikke køres,
+                /// kalder vi 'ILogger' service, og logger en error besked til konsolen.
+                /// </summary>
                 catch (Exception ex)
                 {
                     var errLog = services.GetRequiredService<ILogger<Program>>();

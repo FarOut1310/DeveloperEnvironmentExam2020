@@ -25,6 +25,13 @@ namespace DeveloperEnvironmentExam2020.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
+
+            /// <remarks>
+            /// Her forsøgte jeg at få udskrevet den relevante Category
+            /// i mit product API ved at inkludere det når listen bliver udskrevet.
+            /// Desværre var resultatet kun at dataen slet ikke blev vist.
+            /// </remarks>
+            //return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
         // GET: api/Products/5

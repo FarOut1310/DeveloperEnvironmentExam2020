@@ -10,16 +10,37 @@ namespace DeveloperEnvironmentExam2020.Data
 {
     public class SeedData
     {
+        /// <summary>
+        /// I denne klasse opstilles der funktioner til at tilføje data til min database,
+        /// når mit projekt startes. Dette bliver typisk kaldt for at 'Seed' en database.
+        /// Jeg valgte at oprette en SeedData klasse så at der er noget data at teste med,
+        /// frem for at mine API er tomme, og skal fyldes manuelt.
+        /// </summary>
+        /// <param name="serviceProvider"></param>
         public static void AddCategories(IServiceProvider serviceProvider)
         {
+            ///<summary>
+            /// Her specificeres hvilken service og context som skal bruges.
+            /// IServiceProvider bruges til at hente vores context, som her er Category,
+            /// som er påkrævet for at jeg kan tilføje nye dataobjekter.
+            ///</summary>
             using (var context = new CategoryContext(
                 serviceProvider.GetRequiredService<DbContextOptions<CategoryContext>>()))
             {
+                /// <summary>
+                /// Vi bruger denne 'if' statement for at tjekke om der er nogen data elementer 
+                /// gemt via. vores context. Hvis der er, bliver de returneret.
+                /// </summary>
                 if (context.Categories.Any())
                 {
                     return;
                 }
 
+                /// <summary>
+                /// Her tilføjer jeg nye data elementer gennem min context. 
+                /// 'AddRange' lader mig tilføje flere elementer ad gangen,
+                /// og vil så holde på dem indtil vi har gemt dem til databasen.
+                /// </summary>
                 context.Categories.AddRange(
                     new Category
                     {
@@ -42,6 +63,10 @@ namespace DeveloperEnvironmentExam2020.Data
                         Description = "Sweet baked goods and candy."
                     }
                     );
+                /// <summary>
+                /// Her gemmer vi vores ændringer, så at vores elementer 
+                /// nu vil bliver tilføjet til databasen.
+                /// </summary>
                 context.SaveChanges();
             }
         }

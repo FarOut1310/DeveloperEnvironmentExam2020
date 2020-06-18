@@ -14,8 +14,9 @@ namespace DeveloperEnvironmentExam2020.Models
         public int Amount { get; set; }
         public double Price { get; set; }
 
-        public Category Category { get; set; }
         public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public Category Category { get; set; }
+        
+        //public string CategoryName { get; set; }
     }
 }

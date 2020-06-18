@@ -29,6 +29,11 @@ namespace DeveloperEnvironmentExam2020
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ///<summary>
+            /// Her sætter vi projektet op, så at den gør brug af vores context klasser,
+            /// sammen med en 'InMemoryDatabase' der holder på vores data, når projektet bliver kørt.
+            ///</summary>
+
             services.AddDbContext<CategoryContext>(opt => opt.UseInMemoryDatabase("Rema1000"));
             services.AddDbContext<ProductContext>(opt => opt.UseInMemoryDatabase("Rema1000"));
             services.AddControllers();            
